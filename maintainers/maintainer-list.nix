@@ -3854,6 +3854,7 @@
     githubId = 2817965;
     name = "f--t";
   };
+<<<<<<< HEAD
   f4814n = {
     email = "me@f4814n.de";
     github = "f4814";
@@ -4018,6 +4019,12 @@
       longkeyid = "rsa4096/0xECC755EE583C1672";
       fingerprint = "2F93 661D AC17 EA98 A104  F780 ECC7 55EE 583C 1672";
     }];
+  };
+  fleaz = {
+    email = "mail@felixbreidenstein.de";
+    github = "fleaz";
+    githubId = 2489598;
+    name = "Felix Breidenstein";
   };
   flexagoon = {
     email = "flexagoon@pm.me";
