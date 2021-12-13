@@ -1,0 +1,11 @@
+{
+  "url": "https://github.com/hay-kot/mealie.git",
+  "rev": "8154ee548ab687c77ae72192b3e71499c0050da7",
+  "date": "2021-12-01T21:07:17-09:00",
+  "path": "/nix/store/mrhvn5wj7j8s1jwzlpm1xw8ggl9m76qi-mealie",
+  "sha256": "1fnj3l49hd6ayqd8xdyg55njzcvfpxzqfg819llp1q1383n7p4ny",
+  "fetchLFS": false,
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

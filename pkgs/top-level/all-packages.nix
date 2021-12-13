@@ -5137,6 +5137,8 @@ with pkgs;
 
   maxcso = callPackage ../tools/archivers/maxcso {};
 
+  mealie = callPackage ../servers/web-apps/mealie { };
+
   medusa = callPackage ../tools/security/medusa { };
 
   megasync = libsForQt5.callPackage ../applications/misc/megasync {
