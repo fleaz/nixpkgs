@@ -389,6 +389,7 @@ in {
   matrix-conduit = handleTest ./matrix/conduit.nix {};
   matrix-synapse = handleTest ./matrix/synapse.nix {};
   mattermost = handleTest ./mattermost.nix {};
+  mealie = handleTest ./mealie.nix {};
   mediatomb = handleTest ./mediatomb.nix {};
   mediawiki = handleTest ./mediawiki.nix {};
   meilisearch = handleTest ./meilisearch.nix {};
