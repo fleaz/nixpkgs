@@ -33497,6 +33497,8 @@ with pkgs;
 
   qdl = callPackage ../tools/misc/qdl { };
 
+  ql650td = callPackage ../misc/cups/drivers/brother/ql650td { };
+
   rates = callPackage ../tools/misc/rates {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
