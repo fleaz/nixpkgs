@@ -2528,6 +2528,7 @@ with pkgs;
 
   autorandr = callPackage ../tools/misc/autorandr {};
 
+
   avahi = callPackage ../development/libraries/avahi (config.avahi or {});
 
   avahi-compat = callPackage ../development/libraries/avahi ((config.avahi or {}) // {
@@ -32815,6 +32816,8 @@ with pkgs;
   svaba = callPackage ../applications/science/biology/svaba { };
 
   tebreak = callPackage ../applications/science/biology/tebreak { };
+
+  traccar = callPackage ../servers/web-apps/traccar { };
 
   trimal = callPackage ../applications/science/biology/trimal { };
 
