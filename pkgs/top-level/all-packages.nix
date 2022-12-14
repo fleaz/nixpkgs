@@ -16465,6 +16465,8 @@ with pkgs;
 
   chefdk = callPackage ../development/tools/chefdk { };
 
+  chef-workstation = callPackage ../development/tools/chef-workstation { };
+
   matter-compiler = callPackage ../development/compilers/matter-compiler {};
 
   cfr = callPackage ../development/tools/java/cfr { };
