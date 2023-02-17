@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "gotosocial";
-  version = "0.5.2";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "superseriousbusiness";
     repo = pname;
     rev = "refs/tags/v${version}";
-    hash = "sha256-fQDxU2+sj0QhGOQQRVjKzlyi1PEm/O0B8/V4cac4Kdo=";
+    hash = "sha256-85UmO2ncPMSVbwmeYFWnZ39qZSfsQ+pFovmzhzdnQYo=";
   };
 
   vendorHash = null;
