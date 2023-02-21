@@ -2,9 +2,6 @@
 , pkgs
 , python3
 , fetchFromGitHub
-, substituteAll
-
-, StateDirectory ? "/var/lib/mealie"
 }:
 
 let
@@ -22,23 +19,22 @@ python3.pkgs.buildPythonApplication rec {
   format = "pyproject";
 
 
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace "--cov=mealie" "" \
-      --replace 'aiofiles = "0.5.0"' 'aiofiles = "*"' \
-      --replace 'lxml = "4.6.2"' 'lxml = "*"' \
-      --replace 'uvicorn = {extras = ["standard"], version = "^0.13.0"}' 'uvicorn = {extras = ["standard"], version = "*"}' \
-      --replace 'Jinja2 = "^2.11.2"' 'Jinja2 = "*"' \
-      --replace 'apprise = "0.9.3"' 'apprise = "*"' \
-      --replace 'fastapi = "^0.63.0"' 'fastapi = "*"' \
-      --replace 'python-slugify = "^4.0.1"' 'python-slugify = "*"' \
-      --replace 'python-dotenv = "^0.15.0"' 'python-dotenv = "*"' \
-      --replace 'aniso8601 = "7.0.0"' 'aniso8601 = "*"' \
-  '';
+  # postPatch = ''
+  #   substituteInPlace pyproject.toml \
+  #     --replace "--cov=mealie" "" \
+  #     --replace 'aiofiles = "0.5.0"' 'aiofiles = "*"' \
+  #     --replace 'lxml = "4.6.2"' 'lxml = "*"' \
+  #     --replace 'uvicorn = {extras = ["standard"], version = "^0.13.0"}' 'uvicorn = {extras = ["standard"], version = "*"}' \
+  #     --replace 'Jinja2 = "^2.11.2"' 'Jinja2 = "*"' \
+  #     --replace 'apprise = "0.9.3"' 'apprise = "*"' \
+  #     --replace 'fastapi = "^0.63.0"' 'fastapi = "*"' \
+  #     --replace 'python-slugify = "^4.0.1"' 'python-slugify = "*"' \
+  #     --replace 'python-dotenv = "^0.15.0"' 'python-dotenv = "*"' \
+  #     --replace 'aniso8601 = "7.0.0"' 'aniso8601 = "*"' \
+  # '';
 
   nativeBuildInputs = with python3.pkgs; [
     poetry-core
-    nodejs
   ];
 
   propagatedBuildInputs = with python3.pkgs; [
@@ -70,21 +66,7 @@ python3.pkgs.buildPythonApplication rec {
     uvicorn
   ];
 
-  postBuild = ''
-    (
-      cd frontend
-      ln -s ${nodeDependencies}/lib/node_modules ./node_modules
-      export PATH="${nodeDependencies}/bin:$PATH"
-      export HOME=$(mktemp -d)
-      npm run build
-    )
-  '';
-
-  postInstall = ''
-    cp -vr ./frontend/dist $out/lib/python${python3.pythonVersion}/site-packages/mealie/frontend
-  '';
-
-  doCheck = false;
+  doCheck = true;
   checkInputs = with python3.pkgs; [
     pytestCheckHook
   ];
