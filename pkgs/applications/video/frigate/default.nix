@@ -6,6 +6,7 @@
 , fetchpatch
 , frigate
 , opencv4
+, nixosTests
 }:
 
 let
@@ -152,6 +153,9 @@ python.pkgs.buildPythonApplication rec {
     web = frigate-web;
     inherit python;
     pythonPath =(python.pkgs.makePythonPath propagatedBuildInputs) + ":${frigate}/${python.sitePackages}";
+    tests = {
+      inherit (nixosTests) frigate;
+    };
   };
 
   meta = with lib; {
