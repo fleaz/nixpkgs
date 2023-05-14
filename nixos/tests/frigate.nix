@@ -15,16 +15,32 @@ import ./make-test-python.nix ({ pkgs, lib, ...} :
           mqtt.enabled = false;
 
           cameras.test = {
-            ffmpeg.inputs = [ {
-              # dummy camera, because one is required
-              path = "rtsp://127.0.0.1:554/rtsp";
-              roles = [
-                "detect"
-                "rtmp"
-                "record"
-              ];
-            } ];
+            ffmpeg = {
+              input_args = "preset-rtsp-udp";
+              inputs = [ {
+                path = "rtp://127.0.0.1:8554";
+                roles = [
+                  "detect"
+                  "rtmp"
+                  "record"
+                ];
+              } ];
+            };
           };
+        };
+      };
+
+      systemd.services.rtp-stream = {
+        description = "Start a test stream that frigate can capture";
+        before = [
+          "frigate.service"
+        ];
+        wantedBy = [
+          "multi-user.target"
+        ];
+        serviceConfig = {
+          DynamicUser = true;
+          ExecStart = "${lib.getBin pkgs.ffmpeg-headless}/bin/ffmpeg -re -f lavfi -i testsrc -f rtp rtp://127.0.0.1:8554";
         };
       };
     };
