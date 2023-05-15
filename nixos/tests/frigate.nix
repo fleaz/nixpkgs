@@ -16,12 +16,10 @@ import ./make-test-python.nix ({ pkgs, lib, ...} :
 
           cameras.test = {
             ffmpeg = {
-              input_args = "preset-rtsp-udp";
+              input_args = "-fflags nobuffer -strict experimental -fflags +genpts+discardcorrupt -r 10 -use_wallclock_as_timestamps 1";
               inputs = [ {
-                path = "rtp://127.0.0.1:8554";
+                path = "http://127.0.0.1:8080";
                 roles = [
-                  "detect"
-                  "rtmp"
                   "record"
                 ];
               } ];
@@ -30,7 +28,7 @@ import ./make-test-python.nix ({ pkgs, lib, ...} :
         };
       };
 
-      systemd.services.rtp-stream = {
+      systemd.services.video-stream = {
         description = "Start a test stream that frigate can capture";
         before = [
           "frigate.service"
@@ -40,7 +38,7 @@ import ./make-test-python.nix ({ pkgs, lib, ...} :
         ];
         serviceConfig = {
           DynamicUser = true;
-          ExecStart = "${lib.getBin pkgs.ffmpeg-headless}/bin/ffmpeg -re -f lavfi -i testsrc -f rtp rtp://127.0.0.1:8554";
+          ExecStart = "${lib.getBin pkgs.ffmpeg-headless}/bin/ffmpeg -re -f lavfi -i smptebars=size=800x600:rate=10 -f mpegts -listen 1 http://0.0.0.0:8080";
         };
       };
     };
