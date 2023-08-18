@@ -264,18 +264,6 @@ in
           '';
         };
 
-        domainMap = mkOption {
-          type = types.attrsOf types.str;
-          default = { };
-          description = lib.mdDoc ''
-            Domain map is used to map incomming users (by their email) to
-            a namespace. The key can be a string, or regex.
-          '';
-          example = {
-            ".*" = "default-namespace";
-          };
-        };
-
       };
 
       tls = {
@@ -384,7 +372,6 @@ in
       oidc = {
         issuer = mkDefault cfg.openIdConnect.issuer;
         client_id = mkDefault cfg.openIdConnect.clientId;
-        domain_map = mkDefault cfg.openIdConnect.domainMap;
       };
 
       tls_letsencrypt_cache_dir = "${dataDir}/.cache";
