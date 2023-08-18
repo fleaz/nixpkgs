@@ -232,8 +232,8 @@ in
             Defines the base domain to create the hostnames for MagicDNS.
             {option}`baseDomain` must be a FQDNs, without the trailing dot.
             The FQDN of the hosts will be
-            `hostname.namespace.base_domain` (e.g.
-            `myhost.mynamespace.example.com`).
+            `hostname.user.base_domain` (e.g.
+            `myhost.myuser.example.com`).
           '';
         };
       };
