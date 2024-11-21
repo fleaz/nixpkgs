@@ -104,6 +104,10 @@ let
   withCoralUSB = any (d: d.type == "edgetpu" && hasPrefix "usb" d.device or "") detectors;
   withCoralPCI =  any (d: d.type == "edgetpu" && hasPrefix "pci" d.device or "") detectors;
   withCoral = withCoralPCI || withCoralUSB;
+
+  # Provide ffmpeg-full for NVIDIA hardware acceleration
+  ffmpegArgs = cfg.settings.ffmpeg.hwaccel_args or "";
+  ffmpeg' = if lib.match "/nvidia/" ffmpegArgs != null then pkgs.ffmpeg-full else pkgs.ffmpeg-headless;
 in
 
 {
@@ -540,7 +544,7 @@ in
       path = with pkgs; [
         # unfree:
         # config.boot.kernelPackages.nvidiaPackages.latest.bin
-        ffmpeg-headless
+        ffmpeg'
         libva-utils
         procps
         radeontop
