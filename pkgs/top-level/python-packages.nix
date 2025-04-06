@@ -4376,6 +4376,12 @@ self: super: with self; {
 
   emcee = callPackage ../development/python-modules/emcee { };
 
+  emmett = callPackage ../development/python-modules/emmett { };
+
+  emmett-core = callPackage ../development/python-modules/emmett-core { };
+
+  emmett-pydal = callPackage ../development/python-modules/emmett-pydal { };
+
   emoji = callPackage ../development/python-modules/emoji { };
 
   empty-files = callPackage ../development/python-modules/empty-files { };
@@ -14797,6 +14803,8 @@ self: super: with self; {
 
   reno = callPackage ../development/python-modules/reno { };
 
+  renoir = callPackage ../development/python-modules/renoir { };
+
   renson-endura-delta = callPackage ../development/python-modules/renson-endura-delta { };
 
   reolink = callPackage ../development/python-modules/reolink { };
@@ -15572,6 +15580,8 @@ self: super: with self; {
   sev-snp-measure = callPackage ../development/python-modules/sev-snp-measure { };
 
   seventeentrack = callPackage ../development/python-modules/seventeentrack { };
+
+  severus = callPackage ../development/python-modules/severus { };
 
   sexpdata = callPackage ../development/python-modules/sexpdata { };
 
