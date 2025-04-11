@@ -1245,6 +1245,7 @@ in
   sourcehut = handleTest ./sourcehut { };
   spacecookie = runTest ./spacecookie.nix;
   spark = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./spark { };
+  spoolman =  runTest ./web-apps/spoolman.nix;
   spiped = runTest ./spiped.nix;
   sqlite3-to-mysql = runTest ./sqlite3-to-mysql.nix;
   squid = runTest ./squid.nix;
