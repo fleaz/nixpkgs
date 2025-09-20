@@ -119,15 +119,15 @@ in
           "spoolman"
         ];
         StateDirectoryMode = "0750";
-        WorkingDirectory = cfg.package.outPath + "/${cfg.package.python.sitePackages}/spoolman";
+        WorkingDirectory = cfg.package.outPath + "/runpath";
       };
       environment = env // {
-        PYTHONPATH = "${cfg.package.python.pkgs.makePythonPath cfg.package.dependencies}:${cfg.package}/${cfg.package.python.sitePackages}";
+        PYTHONPATH = "${cfg.package.python.pkgs.makePythonPath cfg.package.propagatedBuildInputs}:${cfg.package}/${cfg.package.python.sitePackages}";
       };
       description = "Spoolman service";
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        ExecStartPre = "${cfg.package.python.pkgs.alembic}/bin/alembic upgrade head";
+        #ExecStartPre = "${cfg.package.python.pkgs.alembic}/bin/alembic upgrade head";
         ExecStart = "${cfg.package.python.pkgs.uvicorn}/bin/uvicorn spoolman.main:app --host ${cfg.listenAddress} --port ${builtins.toString cfg.port}";
         RuntimeDirectory = "spoolman";
       };

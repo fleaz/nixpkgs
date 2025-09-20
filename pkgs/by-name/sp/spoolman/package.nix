@@ -72,6 +72,10 @@ python.pkgs.buildPythonPackage rec {
       --prefix PATH : "${python.pkgs.alembic}/bin"
     '';
 
+  passthru = {
+    python = python;
+  };
+
   meta = common.meta // {
     description = "Spoolman server";
     mainProgram = "spoolman";
