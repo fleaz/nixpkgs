@@ -9136,6 +9136,8 @@ self: super: with self; {
 
   meshcat = callPackage ../development/python-modules/meshcat { };
 
+  meshcore_py = callPackage ../development/python-modules/meshcore_py { };
+
   meshio = callPackage ../development/python-modules/meshio { };
 
   meshlabxml = callPackage ../development/python-modules/meshlabxml { };
